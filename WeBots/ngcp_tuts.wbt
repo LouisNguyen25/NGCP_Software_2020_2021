@@ -1,0 +1,359 @@
+#VRML_SIM R2020b utf8
+WorldInfo {
+  basicTimeStep 16
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation -0.9225980838008679 0.38523513185761965 0.020166034553398413 0.736029937403702
+  position 0.601801833423179 1.2961825260524493 1.4255270369015194
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  size 3 3
+}
+DEF WALL_1 Solid {
+  translation 0 0.05 -1.49
+  scale 3 3 3
+  children [
+    DEF WALL_CREATION Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 0.372549
+        roughness 0.5
+        metalness 0
+      }
+      geometry Box {
+        size 1 0.1 0.025
+      }
+    }
+  ]
+  name "solid(1)"
+  boundingObject USE WALL_CREATION
+}
+DEF WALL_2 Solid {
+  translation 0 0.05 1.51
+  scale 3 3 3
+  children [
+    USE WALL_CREATION
+  ]
+  name "solid(2)"
+  boundingObject USE WALL_CREATION
+}
+DEF WALL_3 Solid {
+  translation 1.51 0.05 -5.54649e-06
+  rotation 0 1 0 1.5708
+  scale 3 3 3
+  children [
+    USE WALL_CREATION
+  ]
+  name "solid(3)"
+  boundingObject USE WALL_CREATION
+}
+DEF WALL_4 Solid {
+  translation -1.55 0.05 5.69347e-06
+  rotation 0 1 0 1.5708
+  scale 3 3 3
+  children [
+    USE WALL_CREATION
+  ]
+  name "solid(4)"
+  boundingObject USE WALL_CREATION
+}
+Robot {
+  translation 0 0.14 -0.02
+  rotation 3.199312734945744e-12 1 0 0
+  children [
+    Camera {
+      translation 0.0200318 0 0.0800318
+      rotation 0 1 0 3.14
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColorMap ImageTexture {
+              url [
+                "C:/Users/donal/AppData/Local/Programs/Webots/resources/images/1174.png"
+              ]
+            }
+            metalness 0
+          }
+          geometry Sphere {
+            radius 0.01
+          }
+        }
+      ]
+      name "camera(1)"
+      boundingObject Sphere {
+        radius 0.01
+      }
+      recognition Recognition {
+      }
+    }
+    Compass {
+      translation 0 0.08 0.04
+      scale 0.1 0.1 0.1
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 1 0.215686
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.1 0.1
+          }
+        }
+      ]
+      boundingObject Box {
+        size 0.1 0.1 0.1
+      }
+    }
+    Receiver {
+      translation 0 0.09 -0.03
+      scale 0.3 0.3 0.3
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0.0156863
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.1 0.1
+          }
+        }
+      ]
+      boundingObject Box {
+        size 0.1 0.1 0.1
+      }
+      channel 1
+    }
+    GPS {
+      translation 0 0.08 0
+      scale 0.1 0.1 0.1
+      children [
+        Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.1 0.1 0.1
+          }
+        }
+      ]
+      boundingObject Box {
+        size 0.1 0.1 0.1
+      }
+    }
+    Camera {
+      translation -0.0199681 0 0.0799682
+      rotation 0 1 0 3.14
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColorMap ImageTexture {
+              url [
+                "C:/Users/donal/AppData/Local/Programs/Webots/resources/images/1174.png"
+              ]
+            }
+            metalness 0
+          }
+          geometry Sphere {
+            radius 0.01
+          }
+        }
+      ]
+      boundingObject Sphere {
+        radius 0.01
+      }
+      recognition Recognition {
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.07 -0.05 0.06
+      }
+      device [
+        RotationalMotor {
+          name "wheel3"
+        }
+      ]
+      endPoint Solid {
+        translation 0.07 -0.05000000000000001 0.06000000000000002
+        rotation -1.352187037637114e-15 1.3511106839455555e-15 1 1.57
+        children [
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0.870588 0.803922 0.054902
+              metalness 0.5
+            }
+            geometry Cylinder {
+              height 0.04
+              radius 0.04
+            }
+          }
+        ]
+        name "wheel3(1)"
+        boundingObject USE WHEEL
+        physics DEF Physics_wheel Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.07 -0.05 -0.06
+      }
+      device [
+        RotationalMotor {
+          name "wheel2"
+        }
+      ]
+      endPoint Solid {
+        translation -0.07 -0.05000000000000001 -0.060000000000000005
+        rotation -1.5918326921863188e-16 1.5905648292317137e-16 1 1.57
+        children [
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0.870588 0.803922 0.054902
+              metalness 0.5
+            }
+            geometry Cylinder {
+              height 0.04
+              radius 0.04
+            }
+          }
+        ]
+        name "wheel2"
+        boundingObject USE WHEEL
+        physics DEF Physics_wheel Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.07 -0.05 -0.06
+      }
+      device [
+        RotationalMotor {
+          name "wheel4"
+        }
+      ]
+      endPoint Solid {
+        translation 0.07 -0.05000000000000001 -0.06000000000000002
+        rotation 2.4930882438332916e-16 -2.491103902170606e-16 1 1.57
+        children [
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0.870588 0.803922 0.054902
+              metalness 0.5
+            }
+            geometry Cylinder {
+              height 0.04
+              radius 0.04
+            }
+          }
+        ]
+        name "wheel4"
+        boundingObject USE WHEEL
+        physics DEF Physics_wheel Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.07 -0.05 0.06
+      }
+      device [
+        RotationalMotor {
+          name "wheel1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.07 -0.05 0.05999999999999999
+        rotation -1.0511472453995476e-15 1.0503106340780391e-15 1 1.57
+        children [
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0.870588 0.803922 0.054902
+              metalness 0.5
+            }
+            geometry Cylinder {
+              height 0.04
+              radius 0.04
+            }
+          }
+        ]
+        name "wheel1"
+        boundingObject USE WHEEL
+        physics DEF Physics_wheel Physics {
+        }
+      }
+    }
+    DEF Body Shape {
+      appearance PBRAppearance {
+        baseColor 0.0509804 0.396078 0.109804
+        metalness 0
+      }
+      geometry Box {
+        size 0.1 0.15 0.15
+      }
+    }
+  ]
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "four_wheeled_collision_avoidance"
+}
+Robot {
+  translation 0.68 0.37 0.33
+  children [
+    Emitter {
+      translation 0.02 0.07 0
+      scale 0.3 0.3 0.3
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0.0156863
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.1 0.1
+          }
+        }
+      ]
+      boundingObject Box {
+        size 0.1 0.1 0.1
+      }
+      channel 1
+    }
+    GPS {
+      translation -0.03 0.07 0
+      scale 0.3 0.3 0.3
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.227451 1 0.109804
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.1 0.1
+          }
+        }
+      ]
+      boundingObject Box {
+        size 0.1 0.1 0.1
+      }
+    }
+    Shape {
+      appearance PBRAppearance {
+        metalness 0
+      }
+      geometry Box {
+        size 0.1 0.1 0.1
+      }
+    }
+  ]
+  name "dest_bot"
+  boundingObject Box {
+    size 0.1 0.1 0.1
+  }
+  controller "destination_controller"
+}

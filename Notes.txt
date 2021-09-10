@@ -1,0 +1,123 @@
+XBee Notes:
+    > Set up Callbacks!!
+    > Consider possible operator overloads for specific purposes
+    > Include a table of codes (0 - 255) with descriptions
+        - 0: Started
+        - 1: Ready/Idle
+        * 2: Landing Sequence (deployed from MAC and free falling)
+        * 3: Landed
+        * 4: Navigating to Hiker
+        * 5: Upside Down
+        * 6: Manual Control (Nav and Payload Retrieval)
+        * 7: Hiker Secured
+        * 8: Hiker Not Secured 
+        * 9: Navigating to EVAC site
+        *10: Hiker Delivered
+        *11: Navigating to Ground Control
+        *12: 
+        .
+        .
+        .
+        - 255(-1): Error
+    > XBee has a buffer system set up to keep data that has been received while transmitting
+
+To access XBee remotely:
+$ ssh ngcp@maxws.ddns.net -p 2020
+$ password: comms
+$ cd xbees/
+$ sudo python3
+$ password: comms
+#>>> import xbee
+#>>> xbee.toeru
+
+Sample:
+'stop': False, 'perform_state': 1, 'hiker_position': {Latitude: 1, Longitude: 1}, 'geofence_length': 2, 
+'geofence': [{'keep_in': True, 'coords': [{Latitude: 1, Longitude: 0}, {Latitude: 0, Longitude: 1}, {Latitude: -1, Longitude: 0}, 
+{Latitude: 0, Longitude: -1}], 'coord_length': 4}, {'keep_in': False, 'coords': [{Latitude: 1, Longitude: 1}, {Latitude: 2, Longitude: 1}, 
+{Latitude: 2, Longitude: -1}, {Latitude: 1, Longitude: -1}], 'coord_length': 4}], 'ez_zone': {Latitude: 5, Longitude: 5}, 
+'travel_to': {Latitude: 5.5, Longitude: 5.5}, 'execute_loading': False, 'control_data': 'vertical': 0.8, 'horizontal': -0.1, 
+'arm': 0, 'claw': 0, 'speed': 0.8, 'manual_control': True, 'armed': True, 'lock': <unlocked _thread.lock object at 0x765d0620>
+
+To access RPi remotely:
+$ ssh ngcp@brbarrios.ddns.net -p 443
+pass: ugv doesn't exist
+$ cd /home/pi/MPU9250/
+
+1. Create shared object with ToGCS (prevent threads from reading/writing at the same time)
+2. Acquire locks on ToGCS
+3. ToGCS.orientation = [new data]
+4. Lock it up and send using ToGCS
+5. Countdown could trigger callback (60 sec or so)
+
+Receive data:
+1. FromGCS will trigger a callback
+2. Check out listen.py
+
+    xbee.ToERU.deserialize(message.data)) -> Convert byte array to usable object
+    Search area ->
+    Geofence -> Keep in/out bounds (boolean)
+    Hiker Position
+    Execute Manual Controller -> Bool (t/f) .manual_controller -> Horz/Vertical
+    Geofence
+    Travel to
+    SAMPLE_CALLBACK -> Receive
+    Send -> ToGCS.serialize.transmit(DATA)
+    **Design code all around ToERU and ToGCS**
+
+Once XBee is available for testing: get XCTU (dev env)
+
+ADXL377 needs to be dropped for calibration!
+
+Downloads Necessary For ERU:
+    > git
+    > python3-pip
+    > smbus 
+    > sudo apt install pigpio
+    > RPi.GPIO
+    > digi-xbee
+    > FaBo9Axis_MPU9250
+    > numpy
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+For running main.py (or any other scripts we want) on startup:
+**Low priority**
+
+$ cd ~/Desktop/NGCP-Software/Main/
+$ sudo chmod +x bootup.sh
+
+Now add the bootup script to the end of autostart file in RPi's config
+$ cd ~/.config/lxpanel/LXDE-pi/
+$ sudo nano autostart
+@lxterminal -e "/home/pi/Desktop/NGCP-Software/Main/bootsup.sh"
+[Ctrl-S; Ctrl-X]
+$ sudo shutdown -r now 
+
+Pi should restart and run bootup.sh
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+******************************************************************************
+For pigpiod (pigpio daemon):
+
+On Target Pi:
+$ sudo raspi-config
+Interface -> Remote GPIO
+
+Set up pigpiod:
+$ sudo systemctl enable pigpiod
+$ sudo systemctl start pigpiod
+
+Check to see if pigpiod is active/running:
+$ sudo systemctl status pigpiod     ᶘᵒ㉨ᵒ ᶅ
+******************************************************************************
+
+
+==============================================================================
+For future reference:
+==============================================================================
+How to add aliases to git config:
+
+git config --global alias.[desired shortcut] "[desired command with options]"
+e.g. git config --global alias.choq "checkout -q"
+==============================================================================

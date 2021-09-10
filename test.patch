@@ -1,0 +1,7 @@
+diff --git a/branch_test.py b/branch_test.py
+new file mode 100644
+index 0000000..657b088
+--- /dev/null
++++ b/branch_test.py
+@@ -0,0 +1 @@
++""" This is a test of branching. """

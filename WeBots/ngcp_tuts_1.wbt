@@ -1,0 +1,572 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  basicTimeStep 16
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation 0.1844411692301485 -0.9497907203007311 -0.2527430369439164 4.37807862240656
+  position 3.8967931942576595 2.4357719574033077 -2.1314823024650824
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  size 4 4
+}
+DEF rampTwo Solid {
+  translation -0.31 1.01969 0.76089
+  rotation 0.9999999999929665 2.652059999981347e-06 -2.652059999981347e-06 1.5708
+  scale 4 4 4
+  children [
+    DEF WALL_CREATION Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 0.372549
+        roughness 0.5
+        metalness 0
+      }
+      geometry Box {
+        size 0.4 0.08 0.003
+      }
+    }
+  ]
+  name "solid(6)"
+  boundingObject USE WALL_CREATION
+}
+DEF rampOne Solid {
+  translation -0.310001 0.49245 -0.304626
+  rotation 0.9999999999859333 4.593509999935384e-06 -2.652069999962694e-06 1.04721
+  scale 4 4 4
+  children [
+    DEF WALL_CREATION Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 0.372549
+        roughness 0.5
+        metalness 0
+      }
+      geometry Box {
+        size 0.2 0.52 0.003
+      }
+    }
+  ]
+  name "solid(1)"
+  boundingObject USE WALL_CREATION
+}
+DEF WALL_1 Solid {
+  translation -7.03921e-07 0.2 -2.05
+  rotation 0 0 1 4.692820414042842e-06
+  scale 4 4 4
+  children [
+    DEF WALL_CREATION Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 0.372549
+        roughness 0.5
+        metalness 0
+      }
+      geometry Box {
+        size 1 0.1 0.025
+      }
+    }
+  ]
+  name "solid(5)"
+  boundingObject USE WALL_CREATION
+}
+DEF WALL_2 Solid {
+  translation 0 0.2 2.02
+  scale 4 4 4
+  children [
+    USE WALL_CREATION
+  ]
+  name "solid(2)"
+  boundingObject USE WALL_CREATION
+}
+DEF WALL_3 Solid {
+  translation 2.02 0.2 -7.41982e-06
+  rotation 0 1 0 1.5708
+  scale 4 4 4
+  children [
+    USE WALL_CREATION
+  ]
+  name "solid(3)"
+  boundingObject USE WALL_CREATION
+}
+DEF WALL_4 Solid {
+  translation -2.02 0.2 7.41984e-06
+  rotation 0 1 0 1.5708
+  scale 4 4 4
+  children [
+    USE WALL_CREATION
+  ]
+  name "solid(4)"
+  boundingObject USE WALL_CREATION
+}
+DEF BOX1 Solid {
+  translation 0.03 0.11 1.32
+  scale 0.69833 0.69833 0.69833
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        metalness 0
+      }
+      geometry DEF BOX Box {
+        size 0.1 0.1 0.1
+      }
+    }
+  ]
+  boundingObject USE BOX
+  physics Physics {
+  }
+  recognitionColors [
+    1 0 0
+  ]
+}
+Robot {
+  translation -0.291323 0.31 -1.69828
+  children [
+    Gyro {
+      name "GYRO"
+    }
+    Compass {
+      name "COMPASS"
+    }
+    Accelerometer {
+      name "ACC"
+    }
+    DEF FRONT_RIGHT HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.07 -0.05 0.06
+      }
+      device [
+        RotationalMotor {
+          name "wheel1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.07000000000000002 -0.05 0.06
+        rotation 1.570717985582997e-15 0 1 1.569999999999998
+        scale 0.75 0.75 0.75
+        children [
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0.870588 0.803922 0.054902
+              metalness 0.5
+            }
+            geometry Cylinder {
+              height 0.04
+              radius 0.04
+            }
+          }
+        ]
+        name "frontR"
+        boundingObject USE WHEEL
+        physics DEF Physics_wheel Physics {
+        }
+      }
+    }
+    DEF BACK_LEFT HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.07 -0.05 -0.06
+      }
+      device [
+        RotationalMotor {
+          name "wheel4"
+        }
+      ]
+      endPoint Solid {
+        translation -0.06999999999999999 -0.05 -0.06
+        rotation 4.712153956748994e-16 7.853589927914989e-17 1 1.5699999999999985
+        scale 0.75 0.75 0.75
+        children [
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0.870588 0.803922 0.054902
+              metalness 0.5
+            }
+            geometry Cylinder {
+              height 0.04
+              radius 0.04
+            }
+          }
+        ]
+        name "backL"
+        boundingObject USE WHEEL
+        physics DEF Physics_wheel Physics {
+        }
+      }
+    }
+    DEF BACK_RIGHT HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.07 -0.05 -0.06
+      }
+      device [
+        RotationalMotor {
+          name "wheel3"
+        }
+      ]
+      endPoint Solid {
+        translation 0.07000000000000002 -0.05 -0.06
+        rotation 7.068230935123482e-16 0 1 1.5699999999999994
+        scale 0.75 0.75 0.75
+        children [
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0.870588 0.803922 0.054902
+              metalness 0.5
+            }
+            geometry Cylinder {
+              height 0.04
+              radius 0.04
+            }
+          }
+        ]
+        name "backR"
+        boundingObject USE WHEEL
+        physics DEF Physics_wheel Physics {
+        }
+      }
+    }
+    DEF FRONT_LEFT HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.07 -0.05 0.06
+      }
+      device [
+        RotationalMotor {
+          name "wheel2"
+        }
+      ]
+      endPoint Solid {
+        translation -0.06999999999999999 -0.05 0.06
+        rotation 1.5707179855829988e-16 4.712153956748997e-16 1 1.5699999999999965
+        scale 0.75 0.75 0.75
+        children [
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0.870588 0.803922 0.054902
+              metalness 0.5
+            }
+            geometry Cylinder {
+              height 0.04
+              radius 0.04
+            }
+          }
+        ]
+        name "frontL"
+        boundingObject USE WHEEL
+        physics DEF Physics_wheel Physics {
+        }
+      }
+    }
+    DEF TOP_MOTOR HingeJoint {
+      jointParameters HingeJointParameters {
+        axis -1 0 0
+        anchor -0.0009 0.0464606 0.05
+      }
+      device [
+        RotationalMotor {
+          name "topMotor"
+        }
+      ]
+      endPoint Solid {
+        translation -9.557070000000003e-05 0.042999999999999906 0.04998860000002782
+        rotation -2.1708084804067405e-08 6.889052842643224e-05 -0.9999999976270473 3.1431853815234496
+        children [
+          Robot {
+            children [
+              Solid {
+                translation 0 -0.004 0
+                children [
+                  DEF DEFPlatform Shape {
+                    appearance PBRAppearance {
+                    }
+                    geometry DEF TOP_BOX Box {
+                      size 0.01 0.001 0.01
+                    }
+                  }
+                ]
+              }
+              DEF ARM_MOTOR_L HingeJoint {
+                jointParameters HingeJointParameters {
+                  axis 0 1 0
+                  anchor 0.002 -0.006 0
+                }
+                device [
+                  RotationalMotor {
+                    name "armMotorL"
+                  }
+                ]
+                endPoint Solid {
+                  translation 0.002 -0.006 0
+                  rotation 9.437979911486315e-17 7.515717881875399e-20 0.9999999999999999 3.14
+                  children [
+                    DEF ARM_LEFT Solid {
+                      translation -0.02 0.002 0.07
+                      rotation 0 -1 0 0.261796
+                      children [
+                        HingeJoint {
+                          jointParameters HingeJointParameters {
+                            anchor 0.001 0 0.07
+                          }
+                          device [
+                            RotationalMotor {
+                              name "stretcher_motor1"
+                            }
+                          ]
+                          endPoint Solid {
+                            translation 0.001 0 0.07
+                            rotation -1.7654578356102968e-17 -1.6642503347652493e-17 -1 1.511795307179586
+                            children [
+                              Solid {
+                                translation 0 0.005 0
+                                children [
+                                  Shape {
+                                    appearance PBRAppearance {
+                                      baseColor 1 0 0.0156863
+                                    }
+                                    geometry Box {
+                                      size 0.001 0.005 0.03
+                                    }
+                                  }
+                                ]
+                                name "solid(1)"
+                                boundingObject DEF ARM_JOINT Shape {
+                                  appearance PBRAppearance {
+                                  }
+                                  geometry Cylinder {
+                                    height 0.005
+                                    radius 0.002
+                                  }
+                                }
+                              }
+                              DEF ARM_JOINT Shape {
+                                appearance PBRAppearance {
+                                }
+                                geometry Cylinder {
+                                  height 0.005
+                                  radius 0.002
+                                }
+                              }
+                            ]
+                          }
+                        }
+                        Shape {
+                          appearance PBRAppearance {
+                          }
+                          geometry DEF LEFT_ARM Box {
+                            size 0.005 0.001 0.15
+                          }
+                        }
+                      ]
+                    }
+                    DEF TOPMOTOR Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.870588 0.803922 0.054902
+                        metalness 0.5
+                      }
+                      geometry Cylinder {
+                        height 0.005
+                        radius 0.001
+                      }
+                    }
+                  ]
+                  name "frontL(2)"
+                }
+              }
+              DEF ARM_MOTOR_R HingeJoint {
+                jointParameters HingeJointParameters {
+                  axis 0 1 0
+                  anchor -0.003 -0.006 0
+                }
+                device [
+                  RotationalMotor {
+                    name "armMotorR"
+                  }
+                ]
+                endPoint Solid {
+                  translation -0.003 -0.006 0
+                  rotation -9.437979911486315e-17 -7.515717881875399e-20 0.9999999999999999 3.14
+                  children [
+                    DEF ARM_RIGHT Solid {
+                      translation 0.0195882 0.002 0.0696592
+                      rotation 0 1 0 0.261803
+                      children [
+                        HingeJoint {
+                          jointParameters HingeJointParameters {
+                            anchor -0.001 0 0.07
+                          }
+                          device [
+                            RotationalMotor {
+                              name "stretcher_motor2"
+                            }
+                          ]
+                          endPoint Solid {
+                            translation -0.001 0 0.07
+                            rotation -1.7654578356102968e-17 -1.6642503347652493e-17 -1 1.511795307179586
+                            children [
+                              DEF ARM_JOINT Shape {
+                                appearance PBRAppearance {
+                                }
+                                geometry Cylinder {
+                                  height 0.005
+                                  radius 0.002
+                                }
+                              }
+                              Solid {
+                                translation 0 -0.005 0
+                                children [
+                                  Shape {
+                                    appearance PBRAppearance {
+                                      baseColor 1 0 0.0156863
+                                    }
+                                    geometry Box {
+                                      size 0.001 0.005 0.03
+                                    }
+                                  }
+                                ]
+                                name "solid(1)"
+                                boundingObject DEF ARM_JOINT Shape {
+                                  appearance PBRAppearance {
+                                  }
+                                  geometry Cylinder {
+                                    height 0.005
+                                    radius 0.002
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                        Shape {
+                          appearance PBRAppearance {
+                          }
+                          geometry Box {
+                            size 0.005 0.001 0.15
+                          }
+                        }
+                      ]
+                      name "solid(1)"
+                    }
+                    DEF TOPMOTOR Shape {
+                      appearance PBRAppearance {
+                        baseColor 0.870588 0.803922 0.054902
+                        metalness 0.5
+                      }
+                      geometry Cylinder {
+                        height 0.005
+                        radius 0.001
+                      }
+                    }
+                  ]
+                  name "frontL(1)"
+                }
+              }
+            ]
+            name "robotTop"
+            controller "robot_controller2"
+          }
+          DEF TOPMOTOR Shape {
+            appearance PBRAppearance {
+              baseColor 0.870588 0.803922 0.054902
+              metalness 0.5
+            }
+            geometry Cylinder {
+              height 0.007
+              radius 0.005
+            }
+          }
+        ]
+        name "frontL(1)"
+        boundingObject USE TOPMOTOR
+        physics Physics {
+        }
+      }
+    }
+    DEF CAM_LEFT HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor -0.075 1 0
+      }
+      device [
+        RotationalMotor {
+          name "RM"
+        }
+      ]
+      endPoint Solid {
+        translation -0.03 0.000707368 0.0799753
+        rotation 1 0 0 1.5
+        scale 0.5 0.5 0.5
+        children [
+          Shape {
+            appearance PBRAppearance {
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.02
+            }
+          }
+          Camera {
+            translation 4.10318e-06 0.0103407 0.00258819
+            rotation 0.000631769209475098 -0.6087612018463554 0.7933532630513642 3.14062
+            name "CAM"
+            recognitionColors [
+              0 0 0
+            ]
+            recognition Recognition {
+              frameColor 0.113725 1 0.113725
+            }
+          }
+        ]
+        name "solid(4)"
+      }
+    }
+    DEF CAM2_RIGHT HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor -0.075 1 0
+      }
+      device [
+        RotationalMotor {
+          name "RM"
+        }
+      ]
+      endPoint Solid {
+        translation 0.02 0.000707368 0.0799753
+        rotation 1 0 0 1.5
+        scale 0.5 0.5 0.5
+        children [
+          Shape {
+            appearance PBRAppearance {
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.02
+            }
+          }
+          Camera {
+            translation -1.46767e-06 0.0102621 -0.00227439
+            rotation 0.0004949294470316865 -0.7834022924968058 0.6215147650342602 3.14062
+            name "CAM2"
+            recognition Recognition {
+              maxRange 0.1
+              frameColor 0 1 0
+            }
+          }
+        ]
+        name "solid(1)"
+      }
+    }
+    DEF Body Shape {
+      appearance PBRAppearance {
+        baseColor 0.0509804 0.396078 0.109804
+        metalness 0
+      }
+      geometry Box {
+        size 0.109 0.08 0.15
+      }
+    }
+  ]
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "robot_controller1"
+}

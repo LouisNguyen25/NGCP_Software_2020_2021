@@ -1,0 +1,3 @@
+[submodule "Comms"]
+	path = Comms
+	url = https://github.com/NGCP-GCS-2021/Comms.git

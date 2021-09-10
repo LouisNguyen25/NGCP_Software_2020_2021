@@ -1,0 +1,15 @@
+# Ignored files/dirs
+pics/
+*.jpg
+*.png
+*.zip
+*.csv
+.DS_Store
+*.docx
+*.pdf
+
+.vscode/
+.gitconfig
+.bash_history
+.viminfo
+
